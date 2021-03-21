@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace Bowling
 {
+    /// <summary>
+    /// Count final bowling score and set Score propertie it BowlingScore object
+    /// </summary>
     public interface IBowling
     {
-        public void CountScore(BowlingScore score);
+        /// <summary>
+        /// Count final bowling score.
+        /// </summary>
+        /// <param name="score">Instance of BowlingScore</param>
+        public void CountScore(ref BowlingScore score);
     }
 }
