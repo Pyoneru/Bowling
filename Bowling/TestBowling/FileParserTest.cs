@@ -11,6 +11,7 @@ namespace TestBowling
     public class FileParserTest
     {
         private const string goodFilename = "good.txt";
+        private const string notFullFilename = "not_full.txt";
 
         /// <summary>
         /// Test file contains at least one person with points. Then parser should return list which is not empty. 
@@ -97,6 +98,24 @@ namespace TestBowling
 
             Assert.IsFalse(noEmpty);
         }
+
+        /// <summary>
+        /// File 'not_full.txt' should contains one full object(name and points) and one not full object(only name).
+        /// Parser should return collection with only one element.
+        /// </summary>
+        [TestMethod]
+        public void NotAddScoreToCollectionIfDataIsNotFull()
+        {
+            IParser parser = new FileParser(GetPath(notFullFilename));
+
+            var bowlings = parser.Parse();
+
+            int size = bowlings.Count;
+
+            Assert.AreEqual(1, size);
+        }
+
+        
 
 
         private string GetPath(string filename)
