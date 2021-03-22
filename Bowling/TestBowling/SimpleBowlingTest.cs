@@ -139,5 +139,37 @@ namespace TestBowling
             Assert.AreEqual(118, finalScore);
         }
 
+        /// <summary>
+        /// Perfect game, collected 10 points with every one throw
+        /// </summary>
+        [TestMethod]
+        public void PerfectGameScore()
+        {
+            var points = new int[] {
+                10, // Round 1
+                10, // Round 2
+                10, // Round 3
+                10, // Round 4
+                10, // Round 5
+                10, // Round 6
+                10, // Round 7
+                10, // Round 8
+                10, // Round 9
+                10, // Round 10
+                10,10 // Addiontal throws
+                -1,-1,-1,-1,-1,-1,-1,-1,-1,-1, // No additional throws
+            };
+
+            BowlingScore score = new BowlingScore(name, points);
+
+            IBowling bowling = new SimpleBowling();
+
+            bowling.CountScore(ref score);
+
+            int finalScore = score.Score;
+
+            Assert.AreEqual(300, finalScore);
+        }
+
     }
 }
