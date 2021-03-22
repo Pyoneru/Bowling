@@ -73,7 +73,7 @@ namespace TestBowling
 
             int finalScore = score.Score;
 
-            Assert.AreEqual(77, finalScore);
+            Assert.AreEqual(73, finalScore);
         }
 
         // Final score with only one strike bonus
@@ -103,7 +103,7 @@ namespace TestBowling
 
             int finalScore = score.Score;
 
-            Assert.AreEqual(78, finalScore);
+            Assert.AreEqual(79, finalScore);
         }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace TestBowling
                 10, // Round 8
                 10, // Round 9
                 10, // Round 10
-                10,10 // Addiontal throws
+                10,10, // Addiontal throws
                 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1, // No additional throws
             };
 
@@ -199,7 +199,7 @@ namespace TestBowling
 
             int finalScore = score.Score;
 
-            Assert.AreEqual(110, finalScore);
+            Assert.AreEqual(120, finalScore);
         }
 
         /// <summary>
