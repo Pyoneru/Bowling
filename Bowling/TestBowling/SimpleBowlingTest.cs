@@ -202,5 +202,36 @@ namespace TestBowling
             Assert.AreEqual(110, finalScore);
         }
 
+        /// <summary>
+        /// If bowling find bad data(out range) then throw ArgumentOutOfRangeException
+        /// </summary>
+        [TestMethod]
+        public void BadDataShouldThrowException()
+        {
+            var points = new int[] {
+                1,9, // Round 1
+                -1,9, // Round 2
+                1,9, // Round 3
+                1,9, // Round 4
+                1,9, // Round 5
+                1,9, // Round 6
+                1,9, // Round 7
+                1,9, // Round 8
+                1,9, // Round 9
+                1,9, // Round 10
+                9, // Addiontal throw
+                -1 // No additional throw
+            };
+
+            BowlingScore score = new BowlingScore(name, points);
+
+            IBowling bowling = new SimpleBowling();
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+            {
+                bowling.CountScore(ref score);
+            });
+        }
+
     }
 }
