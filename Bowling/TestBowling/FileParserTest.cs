@@ -83,11 +83,19 @@ namespace TestBowling
 
             int[] points = bowling.Points;
 
+            bool noEmpty = false;
             for (int i = 0; i < 20; i++)
             {
                 int point = points[i];
-                Assert.AreNotEqual(-1, point);
+                
+                if(point == -1)
+                {
+                    noEmpty = true;
+                    break;
+                }
             }
+
+            Assert.IsFalse(noEmpty);
         }
 
 
