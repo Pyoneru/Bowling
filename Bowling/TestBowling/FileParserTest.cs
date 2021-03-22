@@ -68,6 +68,28 @@ namespace TestBowling
             Assert.AreNotEqual(22, notFilled);
         }
 
+        /// <summary>
+        /// Every player must throw the ball at least 20 times during game.
+        /// That means, first 20 throws can not be empty.
+        /// </summary>
+        [TestMethod]
+        public void First20ThrowsAreNotEmptyFromGoodFile()
+        {
+            IParser parser = new FileParser(GetPath(goodFilename));
+
+            var bowlings = parser.Parse();
+
+            var bowling = bowlings.GetEnumerator().Current;
+
+            int[] points = bowling.Points;
+
+            for (int i = 0; i < 20; i++)
+            {
+                int point = points[i];
+                Assert.AreNotEqual(-1, point);
+            }
+        }
+
 
         private string GetPath(string filename)
         {
