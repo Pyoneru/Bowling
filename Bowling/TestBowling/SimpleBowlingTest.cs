@@ -171,5 +171,36 @@ namespace TestBowling
             Assert.AreEqual(300, finalScore);
         }
 
+        /// <summary>
+        /// Final score with combined collected bonuses
+        /// </summary>
+        [TestMethod]
+        public void CombineBonusScore()
+        {
+            var points = new int[] {
+                10,         // Round 1
+                9,1,        // Round 2
+                7,1,        // Round 3
+                1,9,        // Round 4
+                10,         // Round 5
+                9,0,        // Round 6
+                2,3,        // Round 7
+                4,4,        // Round 8
+                3,6,        // Round 9
+                1,4,        // Round 10
+                -1,-1,-1,-1 // No additional throws
+            };
+
+            BowlingScore score = new BowlingScore(name, points);
+
+            IBowling bowling = new SimpleBowling();
+
+            bowling.CountScore(ref score);
+
+            int finalScore = score.Score;
+
+            Assert.AreEqual(110, finalScore);
+        }
+
     }
 }
