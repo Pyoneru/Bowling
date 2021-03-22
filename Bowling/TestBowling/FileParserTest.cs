@@ -85,6 +85,20 @@ namespace TestBowling
             Assert.AreEqual(1, size);
         }
 
+        /// <summary>
+        /// Throw FileNotFoundException if not found the file.
+        /// </summary>
+        [TestMethod]
+        public void BadFileNameShouldThrowFileNotFoundException()
+        {
+            IParser parser = new FileParser(GetPath("no_exists.txt"));
+
+            Assert.ThrowsException<FileNotFoundException>(() =>
+            {
+                var bowlings = parser.Parse();
+            });
+        }
+
 
         private string GetPath(string filename)
         {
