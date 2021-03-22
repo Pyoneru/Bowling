@@ -12,22 +12,41 @@ namespace TestBowling
     {
         private const string goodFilename = "good.txt";
 
+        /// <summary>
+        /// Test file contains at least one person with points. Then parser should return list which is not empty. 
+        /// </summary>
         [TestMethod]
-        [DeploymentItem(@"data/good.txt")]
         public void CollectionIsNotEmptyFromGoodFile()
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
             IParser parser = new FileParser(GetPath(goodFilename));
 
-            ICollection<BowlingScore> bowlings = parser.Parse();
+            var bowlings = parser.Parse();
 
             Assert.IsTrue(bowlings.Count > 0);
         }
 
+        /// <summary>
+        /// Objects should contains some data after parsed. 
+        /// </summary>
+        [TestMethod]
+        public void NameIsNotEmpyOrNullFromGoodFile()
+        {
+            IParser parser = new FileParser(GetPath(goodFilename));
+
+            var bowlings = parser.Parse();
+
+            var bowling = bowlings.GetEnumerator().Current;
+
+            string name = bowling.Name;
+        
+            Assert.IsNotNull(name);
+            Assert.IsFalse(name.Length == 0);
+        }
+
+
         private string GetPath(string filename)
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            return assembly.Location + "/../" + goodFilename;
+            return Assembly.GetExecutingAssembly().Location + "/../" + goodFilename;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Bowling
         public ICollection<BowlingScore> Parse()
         {
             StreamReader reader = new StreamReader(filename);
-
+            reader.Close();
             return null;
         }
     }
