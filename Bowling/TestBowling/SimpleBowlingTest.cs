@@ -106,5 +106,38 @@ namespace TestBowling
             Assert.AreEqual(78, finalScore);
         }
 
+        /// <summary>
+        /// Final score with spare bonus in every round
+        /// </summary>
+        [TestMethod]
+        public void OnlySpareBonusScore()
+        {
+            var points = new int[] {
+                1,9, // Round 1
+                1,9, // Round 2
+                1,9, // Round 3
+                1,9, // Round 4
+                1,9, // Round 5
+                1,9, // Round 6
+                1,9, // Round 7
+                1,9, // Round 8
+                1,9, // Round 9
+                1,9, // Round 10
+                9, // Addiontal throw
+                -1 // No additional throw
+            };
+
+
+            BowlingScore score = new BowlingScore(name, points);
+
+            IBowling bowling = new SimpleBowling();
+
+            bowling.CountScore(ref score);
+
+            int finalScore = score.Score;
+
+            Assert.AreEqual(118, finalScore);
+        }
+
     }
 }
