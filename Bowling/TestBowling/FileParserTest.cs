@@ -11,7 +11,10 @@ namespace TestBowling
     public class FileParserTest
     {
         private const string goodFilename = "good.txt";
-        private const string notFullFilename = "bad.txt";
+        private const string badFilename = "bad.txt";
+        private const string noExistsFilename = "no_exists.txt";
+        private const string badPointsFilename = "bad_points.txt";
+
 
         /// <summary>
         /// Test file contains at least one person with points. Then parser should return list which is not empty. 
@@ -80,7 +83,7 @@ namespace TestBowling
         [TestMethod]
         public void NotAddScoreToCollectionIfDataIsNotFull()
         {
-            IParser parser = new FileParser(GetPath(notFullFilename));
+            IParser parser = new FileParser(GetPath(badFilename));
 
             var bowlings = parser.Parse();
 
@@ -95,9 +98,20 @@ namespace TestBowling
         [TestMethod]
         public void BadFileNameShouldThrowFileNotFoundException()
         {
-            IParser parser = new FileParser(GetPath("no_exists.txt"));
+            IParser parser = new FileParser(GetPath(noExistsFilename));
 
             Assert.ThrowsException<FileNotFoundException>(() =>
+            {
+                var bowlings = parser.Parse();
+            });
+        }
+
+        [TestMethod]
+        public void BadPointsDataShouldThrowException()
+        {
+            IParser parser = new FileParser(GetPath(badPointsFilename));
+
+            Assert.ThrowsException<FormatException>(() =>
             {
                 var bowlings = parser.Parse();
             });
