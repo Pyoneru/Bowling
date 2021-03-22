@@ -13,4 +13,14 @@
     <PackageReference Include="coverlet.collector" Version="1.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Bowling\Bowling.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="data\good.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
