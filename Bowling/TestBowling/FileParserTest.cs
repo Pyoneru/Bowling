@@ -11,7 +11,7 @@ namespace TestBowling
     public class FileParserTest
     {
         private const string goodFilename = "good.txt";
-        private const string notFullFilename = "not_full.txt";
+        private const string notFullFilename = "bad.txt";
 
         /// <summary>
         /// Test file contains at least one person with points. Then parser should return list which is not empty. 
@@ -36,7 +36,9 @@ namespace TestBowling
 
             var bowlings = parser.Parse();
 
-            var bowling = bowlings.GetEnumerator().Current;
+            var enumerator = bowlings.GetEnumerator();
+            enumerator.MoveNext();
+            var bowling = enumerator.Current;
 
             string name = bowling.Name;
         
@@ -55,7 +57,9 @@ namespace TestBowling
 
             var bowlings = parser.Parse();
 
-            var bowling = bowlings.GetEnumerator().Current;
+            var enumerator = bowlings.GetEnumerator();
+            enumerator.MoveNext();
+            var bowling = enumerator.Current;
 
             int[] points = bowling.Points;
 
@@ -102,7 +106,7 @@ namespace TestBowling
 
         private string GetPath(string filename)
         {
-            return Assembly.GetExecutingAssembly().Location + "/../" + goodFilename;
+            return Environment.CurrentDirectory + "/data/" + filename;
         }
     }
 }

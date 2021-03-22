@@ -1,3 +1,5 @@
+﻿using System;
+using System.Collections.Generic;
 Paweł Kowalski
 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2
 Krzysztof Król
