@@ -43,6 +43,31 @@ namespace TestBowling
             Assert.IsFalse(name.Length == 0);
         }
 
+        /// <summary>
+        /// Empty fields are marked by -1(the player did not throw the ball). 
+        /// If all points are equals to -1, that means parser work incorrect.
+        /// </summary>
+        [TestMethod]
+        public void PointsAreFilledFromGoodFile()
+        {
+            IParser parser = new FileParser(GetPath(goodFilename));
+
+            var bowlings = parser.Parse();
+
+            var bowling = bowlings.GetEnumerator().Current;
+
+            int[] points = bowling.Points;
+
+            // Empty fields are initialized by -1
+            int notFilled = 0;
+            foreach (var point in points)
+            {
+                if (point == -1) notFilled++;
+            }
+
+            Assert.AreNotEqual(22, notFilled);
+        }
+
 
         private string GetPath(string filename)
         {
