@@ -106,6 +106,9 @@ namespace TestBowling
             });
         }
 
+        /// <summary>
+        /// If points have bad format then throw execption(can not convert to int).
+        /// </summary>
         [TestMethod]
         public void BadPointsDataShouldThrowException()
         {
