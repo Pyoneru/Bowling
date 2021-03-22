@@ -70,36 +70,6 @@ namespace TestBowling
         }
 
         /// <summary>
-        /// Every player must throw the ball at least 20 times during game.
-        /// That means, first 20 throws can not be empty.
-        /// </summary>
-        [TestMethod]
-        public void First20ThrowsAreNotEmptyFromGoodFile()
-        {
-            IParser parser = new FileParser(GetPath(goodFilename));
-
-            var bowlings = parser.Parse();
-
-            var bowling = bowlings.GetEnumerator().Current;
-
-            int[] points = bowling.Points;
-
-            bool noEmpty = false;
-            for (int i = 0; i < 20; i++)
-            {
-                int point = points[i];
-                
-                if(point == -1)
-                {
-                    noEmpty = true;
-                    break;
-                }
-            }
-
-            Assert.IsFalse(noEmpty);
-        }
-
-        /// <summary>
         /// File 'not_full.txt' should contains one full object(name and points) and one not full object(only name).
         /// Parser should return collection with only one element.
         /// </summary>
@@ -114,8 +84,6 @@ namespace TestBowling
 
             Assert.AreEqual(1, size);
         }
-
-        
 
 
         private string GetPath(string filename)
