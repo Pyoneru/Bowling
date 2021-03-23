@@ -41,6 +41,33 @@ namespace TestBowling
         }
 
         /// <summary>
+        /// Output should contains two names(with 2 scores).
+        /// </summary>
+        [TestMethod]
+        public void OutputContainsName()
+        {
+            ICollection<BowlingScore> scores = new List<BowlingScore>();
+            scores.Add(GetBowlingScore());
+            scores.Add(GetBowlingScore());
+
+            output.CreateOutput(ref scores, "");
+
+            string outputContent = output.Output;
+
+            var enumerator = scores.GetEnumerator();
+
+            enumerator.MoveNext();
+            var nameFirst = enumerator.Current.Name;
+
+            enumerator.MoveNext();
+            var nameSecond = enumerator.Current.Name;
+
+            var containsName = outputContent.Contains(nameFirst) && outputContent.Contains(nameSecond) ;
+
+            Assert.IsTrue(containsName);
+        }
+
+        /// <summary>
         /// Generate BowlingScore without any bonus
         /// </summary>
         /// <returns>New instance of BowlingScore</returns>
