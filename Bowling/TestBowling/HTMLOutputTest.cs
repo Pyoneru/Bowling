@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Bowling;
+using System.IO;
 
 namespace TestBowling
 {
@@ -18,8 +19,14 @@ namespace TestBowling
         /// </summary>
         public HTMLOutputTest()
         {
-            output = new HTMLOutput("data/template.cshtml");
+            output = new HTMLOutput();
             output.CreateFileOutput = false;
+        }
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            ((HTMLOutput)output).TemplatePath = "data/template.cshtml";
         }
 
         /// <summary>
@@ -120,6 +127,24 @@ namespace TestBowling
             var containsFinalScore = outputContent.Contains(finalScore);
 
             Assert.IsTrue(containsFinalScore);
+        }
+
+        /// <summary>
+        /// If class will not found template file, should throw exception
+        /// </summary>
+        [TestMethod]
+        public void BadTemplatePathShouldThrowFileNotFoundException()
+        {
+            ICollection<BowlingScore> scores = new List<BowlingScore>();
+            scores.Add(GetBowlingScore());
+
+
+            ((HTMLOutput)output).TemplatePath = "bad_template.cpp";
+
+            Assert.ThrowsException<FileNotFoundException>(() =>
+            {
+                output.CreateOutput(ref scores, "");
+            });
         }
 
         /// <summary>
