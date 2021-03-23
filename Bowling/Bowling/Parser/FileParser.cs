@@ -38,10 +38,10 @@ namespace Bowling
         /// <returns>Collection of BowlingScore</returns>
         public ICollection<BowlingScore> Parse()
         {
-            List<BowlingScore> scores = new List<BowlingScore>();
+            var scores = new List<BowlingScore>();
 
             var reader = new StreamReader(filename);
-            TwoLines two = new TwoLines();
+            var two = new TwoLines();
             while (GetNextTwoLines(reader, ref two))
             {
                 if (!string.IsNullOrWhiteSpace(two.First) && !string.IsNullOrWhiteSpace(two.Second)) {

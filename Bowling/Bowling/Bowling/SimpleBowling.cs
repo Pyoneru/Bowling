@@ -19,15 +19,15 @@ namespace Bowling
         /// <param name="score">Reference to instance of BowlingScore containing points to be counted.</param>
         public void CountScore(ref BowlingScore score)
         {
-            int finalScore = 0;
-            int round = 1;
-            int index = 0;
+            var finalScore = 0;
+            var round = 1;
+            var index = 0;
 
             while(round <= 10)
             {
                 if (InRange(score[index]))
                 {
-                    int roundScore = score[index];
+                    var roundScore = score[index];
 
                     if(roundScore == 10)
                     {
