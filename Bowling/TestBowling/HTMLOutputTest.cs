@@ -26,7 +26,7 @@ namespace TestBowling
         [TestInitialize]
         public void TestInitialize()
         {
-            ((HTMLOutput)output).TemplatePath = "data/template.cshtml";
+            ((HTMLOutput)output).TemplatePath = "data/template.html";
         }
 
         /// <summary>
@@ -112,7 +112,6 @@ namespace TestBowling
         {
             ICollection<BowlingScore> scores = new List<BowlingScore>();
             scores.Add(GetBowlingScore());
-
             output.CreateOutput(ref scores, "");
 
             string outputContent = output.Output;

@@ -4,11 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RazorEngine;
+using RazorEngine.Templating;
 
 namespace Bowling
 {
     public class HTMLOutput : IOutput
     {
+        protected const string KEY = "html_bowling";
         protected const string DEFAULT_TEMPLATE_PATH = "template.cshtml";
         public dynamic Output { get; set; }
         public bool CreateFileOutput { get; set; }
@@ -24,14 +27,26 @@ namespace Bowling
 
         public dynamic CreateOutput(ref ICollection<BowlingScore> bowlings, string output)
         {
-            throw new NotImplementedException();
+            var template = File.ReadAllText(TemplatePath);
+
+            Output = Engine.Razor.RunCompile(template, KEY, null, bowlings);
+
+            if (CreateFileOutput)
+            {
+                SaveToFile(output);
+            }
+
+            return Output;
         }
 
         public void SaveToFile(string filename)
         {
-            throw new NotImplementedException();
+            _ = SaveToFileAsync(filename);
         }
 
-        
+        protected async Task SaveToFileAsync(string filename)
+        {
+            await File.WriteAllTextAsync(filename, Output);
+        }
     }
 }

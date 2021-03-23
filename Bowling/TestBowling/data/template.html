@@ -37,7 +37,7 @@
     <th>22</th>
 </tr>
 <tr>
-  @foreach(var score in scores){
+  @foreach(var score in @Model){
     <th>@score.Name</th>
     <th>@score.Score</th>
     @foreach(var point in score.Points){
