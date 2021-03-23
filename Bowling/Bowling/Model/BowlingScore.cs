@@ -43,7 +43,7 @@ namespace Bowling
         /// <summary>
         /// Indexer act as a overlay to array 'Points' access, instead obj.Points[i] you can use obj[i]
         /// </summary>
-        /// <param name="index">index of array</param>
+        /// <param name="index">Index of array element</param>
         /// <returns>Element of array indicted by index</returns>
         public int this[int index]
         {

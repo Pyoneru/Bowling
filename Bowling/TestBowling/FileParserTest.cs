@@ -39,11 +39,11 @@ namespace TestBowling
 
             var bowlings = parser.Parse();
 
-            var enumerator = bowlings.GetEnumerator();
-            enumerator.MoveNext();
-            var bowling = enumerator.Current;
+            var it = bowlings.GetEnumerator();
+            it.MoveNext();
 
-            string name = bowling.Name;
+            var bowling = it.Current;
+            var name = bowling.Name;
         
             Assert.IsNotNull(name);
             Assert.IsFalse(name.Length == 0);
@@ -60,10 +60,10 @@ namespace TestBowling
 
             var bowlings = parser.Parse();
 
-            var enumerator = bowlings.GetEnumerator();
-            enumerator.MoveNext();
-            var bowling = enumerator.Current;
+            var it = bowlings.GetEnumerator();
+            it.MoveNext();
 
+            var bowling = it.Current;
             int[] points = bowling.Points;
 
             // Empty fields are initialized by -1
@@ -76,8 +76,14 @@ namespace TestBowling
             Assert.AreNotEqual(22, notFilled);
         }
 
+        [TestMethod]
+        public void PointsAreNotFilledFromBadFile()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
-        /// File 'not_full.txt' should contains one full object(name and points) and one not full object(only name).
+        /// File 'bad.txt' should contains one full object(name and points) and one not full object(only name).
         /// Parser should return collection with only one element.
         /// </summary>
         [TestMethod]
@@ -107,7 +113,7 @@ namespace TestBowling
         }
 
         /// <summary>
-        /// If points have bad format then throw execption(can not convert to int).
+        /// If any point has bad format then throw execption(can not convert to int).
         /// </summary>
         [TestMethod]
         public void BadPointsDataShouldThrowException()
@@ -120,7 +126,11 @@ namespace TestBowling
             });
         }
 
-
+        /// <summary>
+        /// Get path to file in output directory.
+        /// </summary>
+        /// <param name="filename">Filename</param>
+        /// <returns>Global path to file</returns>
         private string GetPath(string filename)
         {
             return Environment.CurrentDirectory + "/data/" + filename;

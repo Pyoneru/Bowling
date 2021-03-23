@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Bowling
 {
     /// <summary>
-    /// Parse data do collection of BowlingScore
+    /// Parse data to collection of BowlingScore
     /// </summary>
     public interface IParser
     {

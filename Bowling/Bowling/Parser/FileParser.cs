@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 namespace Bowling
 {
     /// <summary>
-    /// Parser for parse date from file with known structure.
+    /// Parser for data from file with known structure.
     /// </summary>
     public class FileParser : IParser
     {
@@ -19,37 +19,38 @@ namespace Bowling
 
         #endregion Constants
 
-        private string filename;
+        protected string filename;
 
         /// <summary>
         /// Set path to file in constructor(filename)
         /// </summary>
-        /// <param name="filename">path to file</param>
+        /// <param name="filename">Path to file</param>
         public FileParser(string filename)
         {
             this.filename = filename;
         }
-
 
         #region Implemented method
 
         /// <summary>
         /// Parse file(filename) to collection of BowlingScore.
         /// </summary>
-        /// <returns>BowlingScore collection</returns>
+        /// <returns>Collection of BowlingScore</returns>
         public ICollection<BowlingScore> Parse()
         {
             List<BowlingScore> scores = new List<BowlingScore>();
 
             var reader = new StreamReader(filename);
-            TwoLines two;
-            while ((two = GetNextTwoLines(reader)) != null)
+            TwoLines two = new TwoLines();
+            while (GetNextTwoLines(reader, ref two))
             {
                 var name = two.First;
-                var points = StringToPoints(two.Second);
+                var points = LinePointsToIntArray(two.Second);
+
                 scores.Add(new BowlingScore(name, points));
             }
             reader.Close();
+
             return scores;
         }
 
@@ -58,18 +59,17 @@ namespace Bowling
         #region Helper methods
 
         /// <summary>
-        /// Read next two lines from StreamReader if exists.
+        /// Read next to two lines from reader.
         /// </summary>
         /// <param name="reader">Reader</param>
-        /// <returns>If two lines were read, then return TwoLines object. If one line was not read, then return null</returns>
-        protected TwoLines GetNextTwoLines(StreamReader reader)
+        /// <param name="two">Refernce to TwoLines object</param>
+        /// <returns>True if two lines were read correct, false in otherwise</returns>
+        protected bool GetNextTwoLines(StreamReader reader, ref TwoLines twoLines)
         {
-            var two = new TwoLines();
-
-            if ((two.First = reader.ReadLine()) == null) return null;
-            if ((two.Second = reader.ReadLine()) == null) return null;
+            if ((twoLines.First = reader.ReadLine()) == null) return false;
+            if ((twoLines.Second = reader.ReadLine()) == null) return false;
             
-            return two;
+            return true;
         }
 
 
@@ -77,8 +77,8 @@ namespace Bowling
         /// Convert one line with known structure to int array.
         /// </summary>
         /// <param name="line">line with points</param>
-        /// <returns>int array (points)</returns>
-        protected int[] StringToPoints(string line)
+        /// <returns>Points as int array</returns>
+        protected int[] LinePointsToIntArray(string line)
         {
             var points = new int[POINTS_LENTGH];
 
@@ -95,12 +95,9 @@ namespace Bowling
             }
 
             // Fill empty fields
-            if(idx < POINTS_LENTGH)
+            for(; idx < POINTS_LENTGH; idx++)
             {
-                for(; idx < POINTS_LENTGH; idx++)
-                {
-                    points[idx] = -1;
-                }
+                points[idx] = -1;
             }
 
             return points;

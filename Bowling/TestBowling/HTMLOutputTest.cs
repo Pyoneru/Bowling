@@ -15,7 +15,7 @@ namespace TestBowling
         private IOutput output;
 
         /// <summary>
-        /// For test, do not create output file. Output will be created only in Output propertie.
+        /// For test, do not create output file. Output content will be created only in Output propertie.
         /// </summary>
         public HTMLOutputTest()
         {
@@ -43,8 +43,9 @@ namespace TestBowling
 
             string outputContent = output.Output;
 
-            Assert.IsNotNull(outputContent);
-            Assert.IsTrue(outputContent.Length > 0);
+            var noEmptyOrNull = outputContent != null && outputContent.Length > 0;
+
+            Assert.IsTrue(noEmptyOrNull);
         }
 
         /// <summary>
@@ -61,13 +62,13 @@ namespace TestBowling
 
             string outputContent = output.Output;
 
-            var enumerator = scores.GetEnumerator();
+            var it = scores.GetEnumerator();
 
-            enumerator.MoveNext();
-            var nameFirst = enumerator.Current.Name;
+            it.MoveNext();
+            var nameFirst = it.Current.Name;
 
-            enumerator.MoveNext();
-            var nameSecond = enumerator.Current.Name;
+            it.MoveNext();
+            var nameSecond = it.Current.Name;
 
             var containsName = outputContent.Contains(nameFirst) && outputContent.Contains(nameSecond) ;
 
@@ -94,10 +95,13 @@ namespace TestBowling
             var containsAllPoints = true;
             foreach(var point in score.Points)
             {
-                if (!outputContent.Contains(Convert.ToString(point)))
+                if (point != -1) // Template for test print nothif for -1 value
                 {
-                    containsAllPoints = false;
-                    break;
+                    if (!outputContent.Contains(Convert.ToString(point)))
+                    {
+                        containsAllPoints = false;
+                        break;
+                    }
                 }
             }
 
@@ -129,7 +133,7 @@ namespace TestBowling
         }
 
         /// <summary>
-        /// If class will not found template file, should throw exception
+        /// If class will not found template file, should throw FileNotFoundException
         /// </summary>
         [TestMethod]
         public void BadTemplatePathShouldThrowFileNotFoundException()
@@ -147,7 +151,7 @@ namespace TestBowling
         }
 
         /// <summary>
-        /// Generate BowlingScore without any bonus
+        /// Generate BowlingScore without any bonus.
         /// </summary>
         /// <returns>New instance of BowlingScore</returns>
         private BowlingScore GetBowlingScore()

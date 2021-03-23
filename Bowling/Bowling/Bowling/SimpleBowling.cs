@@ -14,8 +14,9 @@ namespace Bowling
         #region Algorithm
         /// <summary>
         /// Implementation of algorithm to count final score in bowling.
+        /// You can find graph representation the algorithm inside github repo https://github.com/Pyoneru/Bowling/tree/main.
         /// </summary>
-        /// <param name="score"></param>
+        /// <param name="score">Reference to instance of BowlingScore containing points to be counted.</param>
         public void CountScore(ref BowlingScore score)
         {
             int finalScore = 0;
@@ -62,8 +63,8 @@ namespace Bowling
         /// <summary>
         /// If value is in range then add it to roundScore
         /// </summary>
-        /// <param name="roundScore">sum of colleceted points in one round</param>
-        /// <param name="value">knock downed the pins in one throw</param>
+        /// <param name="roundScore">Sum of colleceted points in one round</param>
+        /// <param name="value">Knock downed the pins in one throw</param>
         protected void AddValueOrThrowExecption(ref int roundScore, int value)
         {
             if (InRange(value))
@@ -75,8 +76,8 @@ namespace Bowling
         /// <summary>
         /// If value is out of range 0-10 then throw exception, otherwise return true
         /// </summary>
-        /// <param name="value">knock downed the pins in one throw</param>
-        /// <returns>true if exception was not thrown</returns>
+        /// <param name="value">Knock downed the pins in one throw</param>
+        /// <returns>True if exception was not thrown</returns>
         protected bool InRange(int value)
         {
             if (value < 0 || value > 10)

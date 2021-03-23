@@ -16,16 +16,24 @@ namespace Bowling
     /// </summary>
     public class HTMLOutput : IOutput
     {
+        #region Constants
         /// <summary>
         /// Key needed by RazorEngine
         /// </summary>
         protected const string KEY = "html_bowling";
 
         /// <summary>
-        /// By default is used DEFAULT_TEMPLATE_PATH to finding template file it you will not provide custom path.
+        /// By default is used DEFAULT_TEMPLATE_PATH to finding template file if you will not provide custom path.
         /// </summary>
         protected const string DEFAULT_TEMPLATE_PATH = "template.cshtml";
 
+        #endregion Constants
+
+        #region Properties
+
+        /// <summary>
+        /// HTMLOutput should generate Output as string
+        /// </summary>
         public dynamic Output { get; set; }
 
         public bool CreateFileOutput { get; set; }
@@ -35,6 +43,9 @@ namespace Bowling
         /// </summary>
         public string TemplatePath { get; set; }
 
+        #endregion Properties
+
+        #region Constructors
         public HTMLOutput(string templatePath)
         {
             templatePath = TemplatePath;
@@ -43,15 +54,18 @@ namespace Bowling
         /// <summary>
         /// Constructor without use default template path
         /// </summary>
-        public HTMLOutput(): this(DEFAULT_TEMPLATE_PATH) { }
+        public HTMLOutput() : this(DEFAULT_TEMPLATE_PATH) { }
 
+        #endregion Constructors
+
+        #region CreateOutput
 
         /// <summary>
-        /// Implementation method.
+        /// Create output from bowlings in html format.
         /// Create Output. Save to file if option is enabled and return Output.
         /// </summary>
         /// <param name="bowlings">Collection of BowlingScore</param>
-        /// <param name="output">filename to save</param>
+        /// <param name="output">Filename to save</param>
         /// <returns>Output</returns>
         public dynamic CreateOutput(ref ICollection<BowlingScore> bowlings, string output)
         {
@@ -77,10 +91,14 @@ namespace Bowling
             Output = Engine.Razor.RunCompile(template, KEY, null, bowlings);
         }
 
+        #endregion CreateOutput
+
+        #region SavingToFile
+
         /// <summary>
-        /// Invoke SaveToFileAsync
+        /// Invoke SaveToFileAsync method
         /// </summary>
-        /// <param name="filename">filename to save</param>
+        /// <param name="filename">Filename to save</param>
         public void SaveToFile(string filename)
         {
             _ = SaveToFileAsync(filename);
@@ -89,11 +107,13 @@ namespace Bowling
         /// <summary>
         /// Asynchronous saving Output to file.
         /// </summary>
-        /// <param name="filename">filename to save</param>
+        /// <param name="filename">Filename to save</param>
         /// <returns>Task</returns>
         protected async Task SaveToFileAsync(string filename)
         {
             await File.WriteAllTextAsync(filename, Output);
         }
+
+        #endregion SavingToFile
     }
 }

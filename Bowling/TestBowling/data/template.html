@@ -41,7 +41,11 @@
     <th>@score.Name</th>
     <th>@score.Score</th>
     @foreach(var point in score.Points){
-      <th>@point</th>
+        @if(point != -1){
+            <th>@point</th>
+        }else{
+            <th></th>
+        }
     }
   }
 </tr>

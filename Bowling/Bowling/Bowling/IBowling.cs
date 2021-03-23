@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Bowling
 {
     /// <summary>
-    /// Count final bowling score and set Score propertie it BowlingScore object
+    /// Count final bowling score and set Score propertie it BowlingScore instance.
     /// </summary>
     public interface IBowling
     {

@@ -13,9 +13,8 @@ namespace TestBowling
     {
         private readonly string name = "Pyoneru";
 
-
         /// <summary>
-        /// Final score without any collected bonus
+        /// Final score without any collected bonus.
         /// </summary>
         [TestMethod]
         public void NoBonusScore()
@@ -46,7 +45,7 @@ namespace TestBowling
         }
 
         /// <summary>
-        /// Final score with only one spare bonus
+        /// Final score with only one spare bonus.
         /// </summary>
         [TestMethod]
         public void OneSpareBonusScore()
@@ -76,7 +75,9 @@ namespace TestBowling
             Assert.AreEqual(73, finalScore);
         }
 
-        // Final score with only one strike bonus
+        /// <summary>
+        /// Final score with only one strike bonus.
+        /// </summary>
         [TestMethod]
         public void OneStrikeBonusScore()
         {
@@ -107,7 +108,7 @@ namespace TestBowling
         }
 
         /// <summary>
-        /// Final score with spare bonus in every round
+        /// Final score with spare bonus in every round.
         /// </summary>
         [TestMethod]
         public void OnlySpareBonusScore()
@@ -140,7 +141,7 @@ namespace TestBowling
         }
 
         /// <summary>
-        /// Perfect game, collected 10 points with every one throw
+        /// Perfect game, collected 10 points with every one throw.
         /// </summary>
         [TestMethod]
         public void PerfectGameScore()
@@ -172,7 +173,7 @@ namespace TestBowling
         }
 
         /// <summary>
-        /// Final score with combined collected bonuses
+        /// Final score with combined collected bonuses.
         /// </summary>
         [TestMethod]
         public void CombineBonusScore()
@@ -203,14 +204,14 @@ namespace TestBowling
         }
 
         /// <summary>
-        /// If bowling find bad data(out range) then throw ArgumentOutOfRangeException
+        /// If bowling find bad data(out range) then throw ArgumentOutOfRangeException.
         /// </summary>
         [TestMethod]
         public void BadDataShouldThrowException()
         {
             var points = new int[] {
                 1,9, // Round 1
-                -1,9, // Round 2
+                -1,9, // Round 2 <- -1 in this place is bad data
                 1,9, // Round 3
                 1,9, // Round 4
                 1,9, // Round 5
@@ -235,14 +236,14 @@ namespace TestBowling
 
         /// <summary>
         /// If player knock downed too many the pins in one round then throw ArgumentOutOfRangeException.
-        /// Player can knock down max the 10 pins in one round
+        /// Player can knock down max the 10 pins in one round.
         /// </summary>
         [TestMethod]
         public void TooManyKnockDownedThePinsInOneRound()
         {
             var points = new int[] {
                 1,9, // Round 1
-                9,9, // Round 2
+                9,9, // Round 2 <- 18 the pins knock downed in one round
                 1,9, // Round 3
                 1,9, // Round 4
                 1,9, // Round 5

@@ -13,22 +13,22 @@ namespace Bowling
     {
 
         /// <summary>
-        /// Result of creating output
+        /// Result of created output
         /// </summary>
         public dynamic Output { get; set; }
         
         /// <summary>
-        /// Create file output after created output, inside CreateOutput method.
+        /// Create file output after created output, should be used inside CreateOutput method.
         /// </summary>
         public bool CreateFileOutput { get; set; }
 
 
         /// <summary>
-        /// Create output
+        /// Create output by input data (bowlings).
         /// </summary>
         /// <param name="bowlings">Collection of BowlingScore</param>
-        /// <param name="output">output name, it can be filename when implementation create file</param>
-        /// <returns>result of created output</returns>
+        /// <param name="output">Output name, it can be filename when the implementation will creating file as output</param>
+        /// <returns>Result of created output</returns>
         public dynamic CreateOutput(ref ICollection<BowlingScore> bowlings, string output);
 
         /// <summary>
