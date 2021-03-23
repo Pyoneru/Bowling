@@ -14,6 +14,7 @@ namespace TestBowling
         private const string badFilename = "bad.txt";
         private const string noExistsFilename = "no_exists.txt";
         private const string badPointsFilename = "bad_points.txt";
+        private const string noPointsFilename = "no_points.txt";
 
 
         /// <summary>
@@ -76,10 +77,19 @@ namespace TestBowling
             Assert.AreNotEqual(22, notFilled);
         }
 
+        /// <summary>
+        /// If line with points exists but not contains any one point, should be avoided.
+        /// </summary>
         [TestMethod]
         public void PointsAreNotFilledFromBadFile()
         {
-            throw new NotImplementedException();
+            IParser parser = new FileParser(GetPath(noPointsFilename));
+
+            var bowlings = parser.Parse();
+
+            var sizeOfBowlings = bowlings.Count;
+
+            Assert.AreEqual(1, sizeOfBowlings);
         }
 
         /// <summary>
