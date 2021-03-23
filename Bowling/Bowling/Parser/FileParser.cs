@@ -14,7 +14,7 @@ namespace Bowling
 
         protected readonly char COMMA = ',';
         protected readonly char SPACE = ' ';
-        protected readonly string WHITE_CHARACTERS_REGEX = @"\s+";
+        protected readonly string WHITE_CHARACTERS_REGEX = "\\s+";
         protected readonly int POINTS_LENTGH = 22;
 
         #endregion Constants
@@ -44,10 +44,11 @@ namespace Bowling
             TwoLines two = new TwoLines();
             while (GetNextTwoLines(reader, ref two))
             {
-                var name = two.First;
-                var points = LinePointsToIntArray(two.Second);
-
-                scores.Add(new BowlingScore(name, points));
+                if (!string.IsNullOrWhiteSpace(two.First) && !string.IsNullOrWhiteSpace(two.Second)) {
+                    var name = two.First;
+                    var points = LinePointsToIntArray(two.Second);
+                    scores.Add(new BowlingScore(name, points));
+                }
             }
             reader.Close();
 
