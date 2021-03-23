@@ -9,17 +9,19 @@ namespace Bowling
 {
     public class HTMLOutput : IOutput
     {
+        public dynamic Output { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool CreateFileOutput { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-
-        public int CreateOutput(ref ICollection<BowlingScore> bowlings, string output)
-        {
-            throw new NotImplementedException();
-
-        }
-
-        public string GetResultMessage(int result)
+        public dynamic CreateOutput(ref ICollection<BowlingScore> bowlings, string output)
         {
             throw new NotImplementedException();
         }
+
+        public void SaveToFile(string filename)
+        {
+            throw new NotImplementedException();
+        }
+
+        
     }
 }

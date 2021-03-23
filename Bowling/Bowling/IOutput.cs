@@ -11,19 +11,30 @@ namespace Bowling
     /// </summary>
     public interface IOutput
     {
+
+        /// <summary>
+        /// Result of creating output
+        /// </summary>
+        public dynamic Output { get; set; }
+        
+        /// <summary>
+        /// Create file output after created output, inside CreateOutput method.
+        /// </summary>
+        public bool CreateFileOutput { get; set; }
+
+
         /// <summary>
         /// Create output
         /// </summary>
         /// <param name="bowlings">Collection of BowlingScore</param>
         /// <param name="output">output name, it can be filename when implementation create file</param>
         /// <returns>result of created output</returns>
-        public int CreateOutput(ref ICollection<BowlingScore> bowlings, string output);
+        public dynamic CreateOutput(ref ICollection<BowlingScore> bowlings, string output);
 
         /// <summary>
-        /// Get specific message for result given from CreateOutput method
+        /// Save output to file
         /// </summary>
-        /// <param name="result">result given from CreateOutput method</param>
-        /// <returns>Specific message</returns>
-        public string GetResultMessage(int result);
+        /// <param name="filename"></param>
+        public void SaveToFile(string filename);
     }
 }
