@@ -9,8 +9,18 @@ namespace Bowling
 {
     public class HTMLOutput : IOutput
     {
-        public dynamic Output { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool CreateFileOutput { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        protected const string DEFAULT_TEMPLATE_PATH = "template.cshtml";
+        public dynamic Output { get; set; }
+        public bool CreateFileOutput { get; set; }
+
+        public string TemplatePath { get; set; }
+
+        public HTMLOutput(string templatePath)
+        {
+            templatePath = TemplatePath;
+        }
+
+        public HTMLOutput(): this(DEFAULT_TEMPLATE_PATH) { }
 
         public dynamic CreateOutput(ref ICollection<BowlingScore> bowlings, string output)
         {
