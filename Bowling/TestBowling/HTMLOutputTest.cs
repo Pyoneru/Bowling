@@ -18,14 +18,26 @@ namespace TestBowling
         /// </summary>
         public HTMLOutputTest()
         {
-            output = new HTMLOutput();
+            output = new HTMLOutput("data/template.cshtml");
             output.CreateFileOutput = false;
         }
 
+        /// <summary>
+        /// Output should not be null or empty after created.
+        /// </summary>
         [TestMethod]
         public void OutputIsNotNullOrEmpty()
         {
+            ICollection<BowlingScore> scores = new List<BowlingScore>();
+            scores.Add(GetBowlingScore());
+            scores.Add(GetBowlingScore());
 
+            output.CreateOutput(ref scores, "");
+
+            string outputContent = output.Output;
+
+            Assert.IsNotNull(outputContent);
+            Assert.IsTrue(outputContent.Length > 0);
         }
 
         /// <summary>
