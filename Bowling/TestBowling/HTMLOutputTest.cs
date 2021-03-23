@@ -79,6 +79,7 @@ namespace TestBowling
             output.CreateOutput(ref scores, "");
 
             string outputContent = output.Output;
+
             var it = scores.GetEnumerator();
             it.MoveNext();
             var score = it.Current;
@@ -94,6 +95,31 @@ namespace TestBowling
             }
 
             Assert.IsTrue(containsAllPoints);
+        }
+
+        /// <summary>
+        /// Output content should contains final score number.
+        /// </summary>
+        [TestMethod]
+        public void OutputContainsFinalScore()
+        {
+            ICollection<BowlingScore> scores = new List<BowlingScore>();
+            scores.Add(GetBowlingScore());
+
+            output.CreateOutput(ref scores, "");
+
+            string outputContent = output.Output;
+
+            var it = scores.GetEnumerator();
+            it.MoveNext();
+
+            var score = it.Current;
+
+            var finalScore = Convert.ToString(score.Score);
+
+            var containsFinalScore = outputContent.Contains(finalScore);
+
+            Assert.IsTrue(containsFinalScore);
         }
 
         /// <summary>
