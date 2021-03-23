@@ -68,6 +68,35 @@ namespace TestBowling
         }
 
         /// <summary>
+        /// Output content should contains all numbers at 'score'.
+        /// </summary>
+        [TestMethod]
+        public void OutputContainsPoints()
+        {
+            ICollection<BowlingScore> scores = new List<BowlingScore>();
+            scores.Add(GetBowlingScore());
+
+            output.CreateOutput(ref scores, "");
+
+            string outputContent = output.Output;
+            var it = scores.GetEnumerator();
+            it.MoveNext();
+            var score = it.Current;
+
+            var containsAllPoints = true;
+            foreach(var point in score.Points)
+            {
+                if (!outputContent.Contains(Convert.ToString(point)))
+                {
+                    containsAllPoints = false;
+                    break;
+                }
+            }
+
+            Assert.IsTrue(containsAllPoints);
+        }
+
+        /// <summary>
         /// Generate BowlingScore without any bonus
         /// </summary>
         /// <returns>New instance of BowlingScore</returns>
@@ -86,7 +115,10 @@ namespace TestBowling
             points[20] = -1;
             points[21] = -1;
 
-            return new BowlingScore(names[rnd.Next(4)], points);
+            var score = new BowlingScore(names[rnd.Next(4)], points);
+            score.Score = rnd.Next(50, 250);
+            
+            return score;
         }
     }
 }
