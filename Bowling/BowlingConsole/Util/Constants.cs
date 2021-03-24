@@ -37,5 +37,13 @@ namespace BowlingConsole.Util
         public const string ERROR_COMMAND_DESCRIPTION = "";
 
         #endregion ErrorCommand
+
+        #region OutputTypeCommand
+
+        public const string OUTPUT_TYPE_COMMAND_FULL_FLAG = "--type-output";
+        public const string OUTPUT_TYPE_COMMAND_SHORT_FLAG = "--to";
+        public const string OUTPUT_TYPE_COMMAND_DESCRIPTION = "Chanage output type generation. You can use only html type in this version";
+
+        #endregion OutputTypeCommand
     }
 }
