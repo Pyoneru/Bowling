@@ -47,9 +47,9 @@ namespace BowlingConsoleTest
         {
             ICommand command = factory.CreateCommand(Constants.PRINT_COMMAND_FULL_FLAG);
 
-            var isPrintCommand = command is PrintCommand;
+            var isCommand = command is PrintCommand;
 
-            Assert.IsTrue(isPrintCommand);
+            Assert.IsTrue(isCommand);
         }
 
         /// <summary>
@@ -60,9 +60,9 @@ namespace BowlingConsoleTest
         {
             ICommand command = factory.CreateCommand(Constants.PRINT_COMMAND_SHORT_FLAG);
 
-            var isPrintCommand = command is PrintCommand;
+            var isCommand = command is PrintCommand;
 
-            Assert.IsTrue(isPrintCommand);
+            Assert.IsTrue(isCommand);
         }
 
         /// <summary>
@@ -73,9 +73,9 @@ namespace BowlingConsoleTest
         {
             ICommand command = factory.CreateCommand(Constants.HELP_COMMAND_FULL_FLAG);
 
-            var isPrintCommand = command is HelpCommand;
+            var isCommand = command is HelpCommand;
 
-            Assert.IsTrue(isPrintCommand);
+            Assert.IsTrue(isCommand);
         }
 
         /// <summary>
@@ -86,9 +86,9 @@ namespace BowlingConsoleTest
         {
             ICommand command = factory.CreateCommand(Constants.HELP_COMMAND_SHORT_FLAG);
 
-            var isPrintCommand = command is HelpCommand;
+            var isCommand = command is HelpCommand;
 
-            Assert.IsTrue(isPrintCommand);
+            Assert.IsTrue(isCommand);
         }
 
         /// <summary>
@@ -98,6 +98,19 @@ namespace BowlingConsoleTest
         public void CreateErrorCommandFullFlag()
         {
             ICommand command = factory.CreateCommand(Constants.ERROR_COMMAND_FULL_FLAG);
+
+            var isCommand = command is ErrorCommand;
+
+            Assert.IsTrue(isCommand);
+        }
+
+        /// <summary>
+        /// Short flag of ErrorCommand should return instance of ErrorCommand
+        /// </summary>
+        [TestMethod]
+        public void CreateErrorCommandShortFlag()
+        {
+            ICommand command = factory.CreateCommand(Constants.ERROR_COMMAND_SHORT_FLAG);
 
             var isPrintCommand = command is ErrorCommand;
 
