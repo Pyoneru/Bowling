@@ -51,5 +51,18 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isPrintCommand);
         }
+
+        /// <summary>
+        /// Short flag of PrintCommand should return instance of PrintCommand
+        /// </summary>
+        [TestMethod]
+        public void CreatePrintCommandShortFlag()
+        {
+            ICommand command = factory.CreateCommand(Constants.PRINT_COMMAND_SHORT_FLAG);
+
+            var isPrintCommand = command is PrintCommand;
+
+            Assert.IsTrue(isPrintCommand);
+        }
     }
 }
