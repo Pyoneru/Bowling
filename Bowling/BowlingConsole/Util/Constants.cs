@@ -41,17 +41,24 @@ namespace BowlingConsole.Util
         #region OutputTypeCommand
 
         public const string OUTPUT_TYPE_COMMAND_FULL_FLAG = "--type-output";
-        public const string OUTPUT_TYPE_COMMAND_SHORT_FLAG = "--to";
-        public const string OUTPUT_TYPE_COMMAND_DESCRIPTION = "Chanage output type generation. Only html type is available in this version";
+        public const string OUTPUT_TYPE_COMMAND_SHORT_FLAG = "-to";
+        public const string OUTPUT_TYPE_COMMAND_DESCRIPTION = "Chanage output type generation. Only html type is available in this version. Use example: '-to=html'";
 
         #endregion OutputTypeCommand
 
         #region BowlingTypeCommand
 
         public const string BOWLING_TYPE_COMMAND_FULL_FLAG = "--type-bowling";
-        public const string BOWLING_TYPE_COMMAND_SHORT_FLAG = "--tb";
-        public const string BOWLING_TYPE_COMMAND_DESCRIPTION = "Change implementation of score counter. Only simple implementation is available in this version";
+        public const string BOWLING_TYPE_COMMAND_SHORT_FLAG = "-tb";
+        public const string BOWLING_TYPE_COMMAND_DESCRIPTION = "Change implementation of score counter. Only simple implementation is available in this version. Use example: '-tb=simple'";
 
         #endregion BowlingTypeCommand
+
+        #region OutputCommand
+
+        public const string OUTPUT_COMMAND_FULL_FLAG = "--output";
+        public const string 
+
+        #endregion OutputCommand
     }
 }
