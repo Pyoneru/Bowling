@@ -194,5 +194,18 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isCommand);
         }
+
+        /// <summary>
+        /// Full flag of OutputGenerateFileCommand should return instance of OutputGenerateFileCommand
+        /// </summary>
+        [TestMethod]
+        public void CreateOutputGenerateFileCommandFullFlag()
+        {
+            ICommand command = factory.CreateCommand(Constants.OUTPUT_GENERATE_FILE_COMMAND_FULL_FLAG);
+
+            var isCommand = command is OutputGenerateFileCommand;
+
+            Assert.IsTrue(isCommand);
+        }
     }
 }
