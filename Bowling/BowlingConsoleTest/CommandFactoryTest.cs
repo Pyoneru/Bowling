@@ -77,5 +77,18 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isPrintCommand);
         }
+
+        /// <summary>
+        /// Short flag of HelpCommand should return instance of HelpCommand
+        /// </summary>
+        [TestMethod]
+        public void CreateHelpCommandShortFlag()
+        {
+            ICommand command = factory.CreateCommand(Constants.HELP_COMMAND_SHORT_FLAG);
+
+            var isPrintCommand = command is HelpCommand;
+
+            Assert.IsTrue(isPrintCommand);
+        }
     }
 }
