@@ -6,6 +6,9 @@ using Bowling;
 
 namespace BowlingConsole.Command
 {
+    /// <summary>
+    /// Set path to template for HTMLOutput
+    /// </summary>
     public class HTMLOutputTemplatePathCommand : ICommand
     {
         public string FullFlag { get; set; }
@@ -35,6 +38,9 @@ namespace BowlingConsole.Command
             return command;
         }
 
+        /// <summary>
+        /// Check if output or templatepath is null, if not then set TemplatePath
+        /// </summary>
         public void Execute()
         {
             if (Output == null)
@@ -46,6 +52,10 @@ namespace BowlingConsole.Command
             Output.TemplatePath = templatePath;
         }
 
+        /// <summary>
+        /// Get HTMLOutput and path to template
+        /// </summary>
+        /// <param name="data">HTMLOutput and string</param>
         public void SetData(params object[] data)
         {
             if(data.Length > 0)
