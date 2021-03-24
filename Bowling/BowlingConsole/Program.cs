@@ -1,4 +1,5 @@
 ﻿using System;
+using BowlingConsole.Command;
 
 namespace BowlingConsole
 {
@@ -6,7 +7,8 @@ namespace BowlingConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Controller controller = new ConsoleController(new Command.CommandFactory(), args);
+            controller.Run();
         }
     }
 }

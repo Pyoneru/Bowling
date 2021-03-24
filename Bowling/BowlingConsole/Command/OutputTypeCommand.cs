@@ -64,7 +64,8 @@ namespace BowlingConsole.Command
         {
             if (data.Length > 0)
             {
-                type = (string)data[0];
+                string command = (string)data[0];
+                type = command.Split("=")[1];
             }
             else
             {
