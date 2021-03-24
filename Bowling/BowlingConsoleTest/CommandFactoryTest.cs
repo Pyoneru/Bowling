@@ -99,25 +99,12 @@ namespace BowlingConsoleTest
 
         #region ErrorCommand
         /// <summary>
-        /// Full flag of ErrorCommand should return instance of ErrorCommand
+        /// Flag of ErrorCommand should return instance of ErrorCommand
         /// </summary>
         [TestMethod]
-        public void CreateErrorCommandFullFlag()
+        public void CreateErrorCommandFlag()
         {
             ICommand command = factory.CreateCommand(Constants.ERROR_COMMAND_FULL_FLAG);
-
-            var isCommand = command is ErrorCommand;
-
-            Assert.IsTrue(isCommand);
-        }
-
-        /// <summary>
-        /// Short flag of ErrorCommand should return instance of ErrorCommand
-        /// </summary>
-        [TestMethod]
-        public void CreateErrorCommandShortFlag()
-        {
-            ICommand command = factory.CreateCommand(Constants.ERROR_COMMAND_SHORT_FLAG);
 
             var isCommand = command is ErrorCommand;
 
