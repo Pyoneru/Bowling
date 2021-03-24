@@ -26,6 +26,17 @@ namespace BowlingConsoleTest
             Assert.IsNotNull(command);
         }
 
+        /// <summary>
+        /// If flag command is bad, should return null
+        /// </summary>
+        [TestMethod]
+        public void BadFlagCommandShouldReturnNull()
+        {
+            string badFlag = "badFlag";
 
+            ICommand command = factory.CreateCommand(Constants.PRINT_COMMAND_FULL_FLAG);
+
+            Assert.IsNull(command);
+        }
     }
 }
