@@ -38,5 +38,18 @@ namespace BowlingConsoleTest
 
             Assert.IsNull(command);
         }
+
+        /// <summary>
+        /// Full flag of PrintCommand should return instance of PrintCommand
+        /// </summary>
+        [TestMethod]
+        public void CreatePrintCommandFullFlag()
+        {
+            ICommand command = factory.CreateCommand(Constants.PRINT_COMMAND_FULL_FLAG);
+
+            var isPrintCommand = command is PrintCommand;
+
+            Assert.IsTrue(isPrintCommand);
+        }
     }
 }
