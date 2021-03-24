@@ -35,7 +35,7 @@ namespace BowlingConsoleTest
         {
             string badFlag = "badFlag";
 
-            ICommand command = factory.CreateCommand(Constants.PRINT_COMMAND_FULL_FLAG);
+            ICommand command = factory.CreateCommand(badFlag);
 
             Assert.IsNull(command);
         }
@@ -104,7 +104,7 @@ namespace BowlingConsoleTest
         [TestMethod]
         public void CreateErrorCommandFlag()
         {
-            ICommand command = factory.CreateCommand(Constants.ERROR_COMMAND_FULL_FLAG);
+            ICommand command = factory.CreateCommand(Constants.ERROR_COMMAND_FACTORY_FLAG);
 
             var isCommand = command is ErrorCommand;
 

@@ -29,7 +29,7 @@ namespace BowlingConsole.Command
         /// <returns>Clone of instance</returns>
         public object Clone()
         {
-            HelpCommand command = new HelpCommand();
+            OutputCommand command = new OutputCommand();
             command.FullFlag = FullFlag;
             command.ShortFlag = ShortFlag;
             command.Description = Description;
