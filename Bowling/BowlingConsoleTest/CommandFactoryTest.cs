@@ -15,6 +15,7 @@ namespace BowlingConsoleTest
             factory = new CommandFactory();
         }
 
+        #region NullTests
         /// <summary>
         /// Returned command should not be null when flag is correct
         /// </summary>
@@ -38,7 +39,9 @@ namespace BowlingConsoleTest
 
             Assert.IsNull(command);
         }
+        #endregion NullTests
 
+        #region PrintCommand
         /// <summary>
         /// Full flag of PrintCommand should return instance of PrintCommand
         /// </summary>
@@ -64,7 +67,9 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isCommand);
         }
+        #endregion PrintCommand
 
+        #region HelpCommand
         /// <summary>
         /// Full flag of HelpCommand should return instance of HelpCommand
         /// </summary>
@@ -90,7 +95,9 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isCommand);
         }
+        #endregion HelpCommand
 
+        #region ErrorCommand
         /// <summary>
         /// Full flag of ErrorCommand should return instance of ErrorCommand
         /// </summary>
@@ -112,11 +119,13 @@ namespace BowlingConsoleTest
         {
             ICommand command = factory.CreateCommand(Constants.ERROR_COMMAND_SHORT_FLAG);
 
-            var isPrintCommand = command is ErrorCommand;
+            var isCommand = command is ErrorCommand;
 
-            Assert.IsTrue(isPrintCommand);
+            Assert.IsTrue(isCommand);
         }
+        #endregion ErrorCommand
 
+        #region BowlingTypeCommand
         /// <summary>
         /// Full flag of BowlingTypeCommand should return instance of BowlingTypeCommand
         /// </summary>
@@ -142,7 +151,9 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isPrintCommand);
         }
+        #endregion BowlingTypeCommand
 
+        #region HTMLOutputTemplatePathCommand
         /// <summary>
         /// Full flag of HTMLOutputTemplatePathCommand should return instance of HTMLOutputTemplatePathCommand
         /// </summary>
@@ -168,7 +179,9 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isCommand);
         }
+        #endregion HTMLOutputTemplatePathCommand
 
+        #region OutputCommand
         /// <summary>
         /// Full flag of OutputCommand should return instance of OutputCommand
         /// </summary>
@@ -194,7 +207,9 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isCommand);
         }
+        #endregion OutputCommand
 
+        #region OutputGenerateFileCommand
         /// <summary>
         /// Full flag of OutputGenerateFileCommand should return instance of OutputGenerateFileCommand
         /// </summary>
@@ -220,7 +235,9 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isCommand);
         }
+        #endregion OutputGenerateFileCommand
 
+        #region OutputTypeCommand
         /// <summary>
         /// Full flag of OutputTypeCommand should return instance of OutputTypeCommand
         /// </summary>
@@ -246,5 +263,6 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isCommand);
         }
+        #endregion OutputTypeCommand
     }
 }
