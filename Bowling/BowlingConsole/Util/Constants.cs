@@ -35,6 +35,7 @@ namespace BowlingConsole.Util
         public const string ERROR_COMMAND_FULL_FLAG = "";
         public const string ERROR_COMMAND_SHORT_FLAG = "";
         public const string ERROR_COMMAND_DESCRIPTION = "";
+        public const string ERROR_COMMAND_FACTORY_FLAG = "error";
 
         #endregion ErrorCommand
 

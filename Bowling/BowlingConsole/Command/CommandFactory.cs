@@ -10,7 +10,6 @@ namespace BowlingConsole.Command
     /// </summary>
     public class CommandFactory
     {
-        protected const string ERROR_FLAG_FOR_FACTORY = "error";
 
         protected Dictionary<string, ICommand> prototypes;
 
@@ -73,13 +72,13 @@ namespace BowlingConsole.Command
                 #endregion OutputGenerateFileCommand
 
                 #region ErrorCommand
-                case ERROR_FLAG_FOR_FACTORY:
+                case Constants.ERROR_COMMAND_FACTORY_FLAG:
 
-                    if (!prototypes.ContainsKey(ERROR_FLAG_FOR_FACTORY))
+                    if (!prototypes.ContainsKey(Constants.ERROR_COMMAND_FACTORY_FLAG))
                     {
-                        prototypes.Add(ERROR_FLAG_FOR_FACTORY, new ErrorCommand());
+                        prototypes.Add(Constants.ERROR_COMMAND_FACTORY_FLAG, new ErrorCommand());
                     }
-                    command = (ErrorCommand) prototypes[ERROR_FLAG_FOR_FACTORY].Clone();
+                    command = (ErrorCommand) prototypes[Constants.ERROR_COMMAND_FACTORY_FLAG].Clone();
 
                     break;
                 #endregion ErrorCommand
