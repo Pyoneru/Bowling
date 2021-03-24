@@ -53,7 +53,7 @@ namespace BowlingConsole.Command
             }
 
             if (Bowling == null)
-                throw new NullReferenceException("Type '" + type + "' of bowling not found");
+                throw new ArgumentNullException("Type '" + type + "' of bowling not found");
         }
 
         /// <summary>

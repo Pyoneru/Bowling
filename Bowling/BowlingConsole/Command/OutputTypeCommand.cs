@@ -53,7 +53,7 @@ namespace BowlingConsole.Command
             }
 
             if (Output == null)
-                throw new NullReferenceException("Type '" + type + "' of output not found");
+                throw new ArgumentNullException("Type '" + type + "' of output not found");
         }
 
         /// <summary>

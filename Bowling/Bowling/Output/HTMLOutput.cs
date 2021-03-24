@@ -48,7 +48,8 @@ namespace Bowling
         #region Constructors
         public HTMLOutput(string templatePath)
         {
-            templatePath = TemplatePath;
+            TemplatePath = templatePath;
+            CreateFileOutput = true;
         }
 
         /// <summary>

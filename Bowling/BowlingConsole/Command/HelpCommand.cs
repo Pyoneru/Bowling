@@ -48,10 +48,11 @@ namespace BowlingConsole.Command
             {
                 foreach(var flag in flags)
                 {
+                    Console.WriteLine("You need give filename in arguments.\n");
                     ICommand command = factory.CreateCommand(flag);
                     if(command != null)
                     {
-                        Console.WriteLine(command.Description);
+                        Console.WriteLine(command.Description + "\n");
                     }
                     else
                     {

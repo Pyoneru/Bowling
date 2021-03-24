@@ -44,10 +44,10 @@ namespace BowlingConsole.Command
         public void Execute()
         {
             if (Output == null)
-                throw new NullReferenceException("Output is null");
+                throw new ArgumentNullException("Output is null");
 
             if (string.IsNullOrEmpty(templatePath))
-                throw new NullReferenceException("Template path is null or empty.");
+                throw new ArgumentNullException("Template path is null or empty.");
 
             Output.TemplatePath = templatePath;
         }
@@ -64,7 +64,12 @@ namespace BowlingConsole.Command
 
                 if(data.Length > 1)
                 {
-                    templatePath = (string)data[1];
+                    string command = (string)data[1];
+                    templatePath = command.Split("=")[1];
+                }
+                else
+                {
+                    templatePath = Output.TemplatePath;
                 }
             }
         }

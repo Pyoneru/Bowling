@@ -46,17 +46,20 @@ namespace BowlingConsole
         {
             ICommand command = factory.CreateCommand(Constants.HELP_COMMAND_FULL_FLAG);
 
-            string[] data;
             if (args.Length > 1)
             {
-                data = new string[args.Length - 1];
+                object[] data = new object[args.Length];
+                data[0] = factory;
                 for (int i = 1; i < args.Length; i++)
-                    data[i - 1] = args[i];
+                    data[i] = args[i];
+                command.SetData(data);
+                command.Execute();
             }
-            else data = new string[0];
-            string message = "You need give filename in arguments.";
-            command.SetData(message, data);
-            command.Execute();
+            else
+            {
+                command.SetData(factory);
+                command.Execute();
+            }
         }
 
         /// <summary>
@@ -83,11 +86,7 @@ namespace BowlingConsole
                 ExecuteErrorCommand("Can not parse file: " + args[0]);
                 ExitFailed();
             }
-        }
-
-        #endregion MainBranches
-
-        #region FlagBranches
+        }  
 
         /// <summary>
         /// If args contains only filename, use default options.
@@ -115,9 +114,17 @@ namespace BowlingConsole
             IOutput output;
             TypeOutputBranch(out output);
             var filename = NoFileBranch(ref output);
+            if(output is HTMLOutput)
+            {
+                HTMLTemplatePathBranch(ref output);
+            }
             dynamic content = CreateOutput(ref output, filename, ref scores);
-            
+            PrintOutputBranch(content);
         }
+
+        #endregion MainBranches
+
+        #region FlagBranches
 
         /// <summary>
         /// Set custom or default Bowling
@@ -237,6 +244,28 @@ namespace BowlingConsole
             return GetDefaultFilename(ref output);
         }
 
+        /// <summary>
+        /// Set template path if flag found
+        /// </summary>
+        /// <param name="output">Output</param>
+        protected void HTMLTemplatePathBranch(ref IOutput output)
+        {
+            string arg;
+            if ((arg = ArgsContainsFlag(Constants.HTML_OUTPUT_TEMPLATE_PATH_COMMAND_FULL_FLAG, Constants.HTML_OUTPUT_TEMPLATE_PATH_COMMAND_SHORT_FLAG)) != null)
+            {
+                try
+                {
+                    ICommand command = factory.CreateCommand(Constants.HTML_OUTPUT_TEMPLATE_PATH_COMMAND_FULL_FLAG);
+                    command.SetData(output, arg);
+                    command.Execute();
+                }catch(Exception ex)
+                {
+                    ExecuteErrorCommand("Can not found template");
+                    ExitFailed();
+                }
+            }
+        }
+
         #endregion FlagBranches
 
         #region Tasks
@@ -275,6 +304,7 @@ namespace BowlingConsole
                 {
                     BowlingScore score = it.Current;
                     bowling.CountScore(ref score);
+                    it.MoveNext();
                 }
             }
             catch (Exception ex)
@@ -299,6 +329,7 @@ namespace BowlingConsole
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 ExecuteErrorCommand("Can not created output. Please check file");
                 ExitFailed();
             }
