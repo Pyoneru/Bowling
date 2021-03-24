@@ -207,5 +207,18 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isCommand);
         }
+
+        /// <summary>
+        /// Short flag of OutputGenerateFileCommand should return instance of OutputGenerateFileCommand
+        /// </summary>
+        [TestMethod]
+        public void CreateOutputGenerateFileCommandShortFlag()
+        {
+            ICommand command = factory.CreateCommand(Constants.OUTPUT_GENERATE_FILE_COMMAND_SHORT_FLAG);
+
+            var isCommand = command is OutputGenerateFileCommand;
+
+            Assert.IsTrue(isCommand);
+        }
     }
 }
