@@ -1,4 +1,5 @@
 ﻿using Bowling;
+using BowlingConsole.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,6 +17,13 @@ namespace BowlingConsole.Command
 
         protected IOutput output;
         protected bool generate;
+
+        public OutputGenerateFileCommand()
+        {
+            FullFlag = Constants.OUTPUT_GENERATE_FILE_COMMAND_FULL_FLAG;
+            ShortFlag = Constants.OUTPUT_GENERATE_FILE_COMMAND_SHORT_FLAG;
+            Description = Constants.OUTPUT_GENERATE_FILE_COMMAND_DESCRIPTION;
+        }
 
         /// <summary>
         /// Copy only properties. 
