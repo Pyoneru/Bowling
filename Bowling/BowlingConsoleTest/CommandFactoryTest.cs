@@ -142,5 +142,18 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isPrintCommand);
         }
+
+        /// <summary>
+        /// Full flag of HTMLOutputTemplatePathCommand should return instance of HTMLOutputTemplatePathCommand
+        /// </summary>
+        [TestMethod]
+        public void CreateHTMLOutputTemplatePathCommandFullFlag()
+        {
+            ICommand command = factory.CreateCommand(Constants.HTML_OUTPUT_TEMPLATE_PATH_COMMAND_FULL_FLAG);
+
+            var isCommand = command is HTMLOutputTemplatePathCommand;
+
+            Assert.IsTrue(isCommand);
+        }
     }
 }
