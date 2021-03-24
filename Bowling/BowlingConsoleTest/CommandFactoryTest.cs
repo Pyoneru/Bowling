@@ -64,5 +64,18 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isPrintCommand);
         }
+
+        /// <summary>
+        /// Full flag of HelpCommand should return instance of HelpCommand
+        /// </summary>
+        [TestMethod]
+        public void CreateHelpCommandFullFlag()
+        {
+            ICommand command = factory.CreateCommand(Constants.HELP_COMMAND_FULL_FLAG);
+
+            var isPrintCommand = command is HelpCommand;
+
+            Assert.IsTrue(isPrintCommand);
+        }
     }
 }
