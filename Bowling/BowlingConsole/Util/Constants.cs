@@ -57,8 +57,17 @@ namespace BowlingConsole.Util
         #region OutputCommand
 
         public const string OUTPUT_COMMAND_FULL_FLAG = "--output";
-        public const string 
+        public const string OUTPUT_COMMAND_SHORT_FLAG = "-o";
+        public const string OUTPUT_COMMAND_DESCRIPTION = "Change default output file name. Use example: '-o=FILENAME_WITHOUT_SPACE'";
 
         #endregion OutputCommand
+
+        #region HTML_OUTPUT_TEMPLATE_PATH_COMMAND
+
+        public const string HTML_OUTPUT_TEMPLATE_PATH_COMMAND_FULL_FLAG = "--html-template-path";
+        public const string HTML_OUTPUT_TEMPLATE_PATH_COMMAND_SHORT_FLAG = "-html-tp";
+        public const string HTML_OUTPUT_TEMPLATE_PATH_COMMAND_DESCRIPTION = "Specific command for html work. That's means this command work only if html output is used. Use example: '--html-template-path=PATH_TO_TEMPLE'";
+
+        #endregion HTML_OUTPUT_TEMPLATE_PATH_COMMAND
     }
 }
