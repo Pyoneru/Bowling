@@ -168,5 +168,18 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isCommand);
         }
+
+        /// <summary>
+        /// Full flag of OutputCommand should return instance of OutputCommand
+        /// </summary>
+        [TestMethod]
+        public void CreateOutputCommandFullFlag()
+        {
+            ICommand command = factory.CreateCommand(Constants.OUTPUT_COMMAND_FULL_FLAG);
+
+            var isCommand = command is OutputCommand;
+
+            Assert.IsTrue(isCommand);
+        }
     }
 }
