@@ -129,5 +129,18 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isCommand);
         }
+
+        /// <summary>
+        /// Short flag of BowlingTypeCommand should return instance of BowlingTypeCommand
+        /// </summary>
+        [TestMethod]
+        public void CreateBowlingTypeCommandShortFlag()
+        {
+            ICommand command = factory.CreateCommand(Constants.BOWLING_TYPE_COMMAND_SHORT_FLAG);
+
+            var isPrintCommand = command is BowlingTypeCommand;
+
+            Assert.IsTrue(isPrintCommand);
+        }
     }
 }
