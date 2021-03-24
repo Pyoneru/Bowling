@@ -233,5 +233,18 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isCommand);
         }
+
+        /// <summary>
+        /// Short flag of OutputTypeCommand should return instance of OutputTypeCommand
+        /// </summary>
+        [TestMethod]
+        public void CreateOutputTypeCommandShortFlag()
+        {
+            ICommand command = factory.CreateCommand(Constants.OUTPUT_TYPE_COMMAND_SHORT_FLAG);
+
+            var isCommand = command is OutputTypeCommand;
+
+            Assert.IsTrue(isCommand);
+        }
     }
 }
