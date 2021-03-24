@@ -90,5 +90,18 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isPrintCommand);
         }
+
+        /// <summary>
+        /// Full flag of ErrorCommand should return instance of ErrorCommand
+        /// </summary>
+        [TestMethod]
+        public void CreateErrorCommandFullFlag()
+        {
+            ICommand command = factory.CreateCommand(Constants.ERROR_COMMAND_FULL_FLAG);
+
+            var isPrintCommand = command is ErrorCommand;
+
+            Assert.IsTrue(isPrintCommand);
+        }
     }
 }
