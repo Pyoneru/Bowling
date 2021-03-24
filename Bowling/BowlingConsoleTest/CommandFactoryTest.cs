@@ -155,5 +155,18 @@ namespace BowlingConsoleTest
 
             Assert.IsTrue(isCommand);
         }
+
+        /// <summary>
+        /// Short flag of HTMLOutputTemplatePathCommand should return instance of HTMLOutputTemplatePathCommand
+        /// </summary>
+        [TestMethod]
+        public void CreateHTMLOutputTemplatePathCommandShortFlag()
+        {
+            ICommand command = factory.CreateCommand(Constants.HTML_OUTPUT_TEMPLATE_PATH_COMMAND_SHORT_FLAG);
+
+            var isCommand = command is HTMLOutputTemplatePathCommand;
+
+            Assert.IsTrue(isCommand);
+        }
     }
 }
