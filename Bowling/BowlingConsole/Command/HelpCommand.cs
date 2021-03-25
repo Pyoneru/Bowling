@@ -33,9 +33,9 @@ namespace BowlingConsole.Command
         {
             if(factory != null)
             {
-                foreach(var flag in flags)
+                Console.WriteLine("You need provide filename as first argument.\n");
+                foreach (var flag in flags)
                 {
-                    Console.WriteLine("You need provide filename as first argument.\n");
                     ICommand command = factory.CreateCommand(flag);
                     if(command != null)
                     {
