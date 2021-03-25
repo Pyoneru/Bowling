@@ -7,7 +7,7 @@
 
 ## Bowling Library
 
-Bowling library containts three modules
+Bowling library containts three modules. All modules were created to be extended.
 
 ### Parser
 Convering data from outside source to model class (Bowling.BowlingScore). First version contains only one built-in implementation.<br/>
@@ -50,3 +50,23 @@ output.CreateOutput(scores, filename);
 dynamic content = output.Output;
 Console.WriteLine(content);
 ```
+
+## Bowling Console Application
+Console app using all implementations from library.
+
+### Hot to use ?
+Application need be executed with arguments. The first should be a filename with data or be the help flag(-h or --help).
+Example
+```
+.\BowlingConsole data.txt // <- run application to create output
+.\BowlingConsole --help // <- print description for all commands
+.\BowlingConsole --help --print // <-print descrption for --print flag
+```
+Application could contains additional flags.
+* [-h --help] Display descrption for flags.
+* [-p --print] Print output in console window.
+* [-nf --nofile] Do not generate a output file
+* [-to --type-output] Change implementation of IOutput(only html possible for this version)
+* [-tb --type-bowling] Change implementation of IBowling(only simple possible for this version)
+* [-o --output] Change output filename
+* [-html-tp --html-template-path] This flag will working only if html implementation is in use. Change path to template.
