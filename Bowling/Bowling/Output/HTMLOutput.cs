@@ -87,9 +87,18 @@ namespace Bowling
         /// <param name="bowlings">Collection of BowlingScore</param>
         protected void CreateOutputFromTemplate(ref ICollection<BowlingScore> bowlings)
         {
-            var template = File.ReadAllText(TemplatePath);
+            try
+            {
+                var template = File.ReadAllText(TemplatePath);
 
-            Output = Engine.Razor.RunCompile(template, KEY, null, bowlings);
+                Output = Engine.Razor.RunCompile(template, KEY, null, bowlings);
+            }catch(FileNotFoundException ex)
+            {
+                var color = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("can not found template file: " + TemplatePath);
+                Console.ForegroundColor = color;
+            }
         }
 
         #endregion CreateOutput

@@ -39,7 +39,7 @@ namespace BowlingConsole.Command
                     ICommand command = factory.CreateCommand(flag);
                     if(command != null)
                     {
-                        Console.WriteLine(command.Description + "\n");
+                        Console.WriteLine(HelpMessage(ref command));
                     }
                     else
                     {
@@ -82,6 +82,11 @@ namespace BowlingConsole.Command
                     };
                 }
             }
+        }
+
+        protected string HelpMessage(ref ICommand command)
+        {
+            return "[" + command.FullFlag + "," + command.ShortFlag + "] " + command.Description + "\n";
         }
     }
 }
