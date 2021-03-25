@@ -26,19 +26,6 @@ namespace BowlingConsole.Command
         }
 
         /// <summary>
-        /// Copy only properties. 
-        /// </summary>
-        /// <returns>Clone of instance</returns>
-        public object Clone()
-        {
-            OutputGenerateFileCommand command = new OutputGenerateFileCommand();
-            command.FullFlag = FullFlag;
-            command.ShortFlag = ShortFlag;
-            command.Description = Description;
-            return command;
-        }
-
-        /// <summary>
         /// Set CreateFileOutput properties in IOutput instance
         /// </summary>
         public void Execute()

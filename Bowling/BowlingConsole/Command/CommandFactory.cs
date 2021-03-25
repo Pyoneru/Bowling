@@ -6,17 +6,10 @@ using System.Text;
 namespace BowlingConsole.Command
 {
     /// <summary>
-    /// Creator commands.
+    /// Command creator.
     /// </summary>
     public class CommandFactory
     {
-
-        protected Dictionary<string, ICommand> prototypes;
-
-        public CommandFactory()
-        {
-            prototypes = new Dictionary<string, ICommand>();
-        }
 
         /// <summary>
         /// If command was not created before, create prototype.
@@ -33,12 +26,7 @@ namespace BowlingConsole.Command
                 case Constants.PRINT_COMMAND_FULL_FLAG:
                 case Constants.PRINT_COMMAND_SHORT_FLAG:
 
-                    if(!prototypes.ContainsKey(Constants.PRINT_COMMAND_FULL_FLAG) &&
-                        !prototypes.ContainsKey(Constants.PRINT_COMMAND_SHORT_FLAG))
-                    {
-                        prototypes.Add(Constants.PRINT_COMMAND_FULL_FLAG, new PrintCommand());
-                    }
-                    command = (PrintCommand) prototypes[Constants.PRINT_COMMAND_FULL_FLAG].Clone();
+                    command = new PrintCommand();
 
                     break;
                 #endregion PrintCommand
@@ -47,12 +35,7 @@ namespace BowlingConsole.Command
                 case Constants.HELP_COMMAND_FULL_FLAG:
                 case Constants.HELP_COMMAND_SHORT_FLAG:
 
-                    if (!prototypes.ContainsKey(Constants.HELP_COMMAND_FULL_FLAG) &&
-                        !prototypes.ContainsKey(Constants.HELP_COMMAND_SHORT_FLAG))
-                    {
-                        prototypes.Add(Constants.HELP_COMMAND_FULL_FLAG, new HelpCommand());
-                    }
-                    command = (HelpCommand) prototypes[Constants.HELP_COMMAND_FULL_FLAG].Clone();
+                    command = new HelpCommand();
 
                     break;
                 #endregion HelpCommand
@@ -61,12 +44,7 @@ namespace BowlingConsole.Command
                 case Constants.OUTPUT_GENERATE_FILE_COMMAND_FULL_FLAG:
                 case Constants.OUTPUT_GENERATE_FILE_COMMAND_SHORT_FLAG:
 
-                    if (!prototypes.ContainsKey(Constants.OUTPUT_GENERATE_FILE_COMMAND_FULL_FLAG) &&
-                        !prototypes.ContainsKey(Constants.OUTPUT_GENERATE_FILE_COMMAND_SHORT_FLAG))
-                    {
-                        prototypes.Add(Constants.OUTPUT_GENERATE_FILE_COMMAND_FULL_FLAG, new OutputGenerateFileCommand());
-                    }
-                    command = (OutputGenerateFileCommand) prototypes[Constants.OUTPUT_GENERATE_FILE_COMMAND_FULL_FLAG].Clone();
+                    command = new OutputGenerateFileCommand();
 
                     break;
                 #endregion OutputGenerateFileCommand
@@ -74,11 +52,7 @@ namespace BowlingConsole.Command
                 #region ErrorCommand
                 case Constants.ERROR_COMMAND_FACTORY_FLAG:
 
-                    if (!prototypes.ContainsKey(Constants.ERROR_COMMAND_FACTORY_FLAG))
-                    {
-                        prototypes.Add(Constants.ERROR_COMMAND_FACTORY_FLAG, new ErrorCommand());
-                    }
-                    command = (ErrorCommand) prototypes[Constants.ERROR_COMMAND_FACTORY_FLAG].Clone();
+                    command = new ErrorCommand();
 
                     break;
                 #endregion ErrorCommand
@@ -87,12 +61,7 @@ namespace BowlingConsole.Command
                 case Constants.OUTPUT_TYPE_COMMAND_FULL_FLAG:
                 case Constants.OUTPUT_TYPE_COMMAND_SHORT_FLAG:
 
-                    if (!prototypes.ContainsKey(Constants.OUTPUT_TYPE_COMMAND_FULL_FLAG) &&
-                        !prototypes.ContainsKey(Constants.OUTPUT_TYPE_COMMAND_SHORT_FLAG))
-                    {
-                        prototypes.Add(Constants.OUTPUT_TYPE_COMMAND_FULL_FLAG, new OutputTypeCommand());
-                    }
-                    command = (OutputTypeCommand)prototypes[Constants.OUTPUT_TYPE_COMMAND_FULL_FLAG].Clone();
+                    command = new OutputTypeCommand();
 
                     break;
                 #endregion OutputTypeCommand
@@ -101,12 +70,7 @@ namespace BowlingConsole.Command
                 case Constants.BOWLING_TYPE_COMMAND_FULL_FLAG:
                 case Constants.BOWLING_TYPE_COMMAND_SHORT_FLAG:
 
-                    if (!prototypes.ContainsKey(Constants.BOWLING_TYPE_COMMAND_FULL_FLAG) &&
-                        !prototypes.ContainsKey(Constants.BOWLING_TYPE_COMMAND_SHORT_FLAG))
-                    {
-                        prototypes.Add(Constants.BOWLING_TYPE_COMMAND_FULL_FLAG, new BowlingTypeCommand());
-                    }
-                    command = (BowlingTypeCommand)prototypes[Constants.BOWLING_TYPE_COMMAND_FULL_FLAG].Clone();
+                    command = new BowlingTypeCommand();
 
                     break;
                 #endregion BowlingTypeCommand
@@ -115,12 +79,7 @@ namespace BowlingConsole.Command
                 case Constants.OUTPUT_COMMAND_FULL_FLAG:
                 case Constants.OUTPUT_COMMAND_SHORT_FLAG:
 
-                    if (!prototypes.ContainsKey(Constants.OUTPUT_COMMAND_FULL_FLAG) &&
-                        !prototypes.ContainsKey(Constants.OUTPUT_COMMAND_SHORT_FLAG))
-                    {
-                        prototypes.Add(Constants.OUTPUT_COMMAND_FULL_FLAG, new OutputCommand());
-                    }
-                    command = (OutputCommand)prototypes[Constants.OUTPUT_COMMAND_FULL_FLAG].Clone();
+                    command = new OutputCommand();
 
                     break;
                 #endregion OutputCommand
@@ -129,12 +88,7 @@ namespace BowlingConsole.Command
                 case Constants.HTML_OUTPUT_TEMPLATE_PATH_COMMAND_FULL_FLAG:
                 case Constants.HTML_OUTPUT_TEMPLATE_PATH_COMMAND_SHORT_FLAG:
 
-                    if (!prototypes.ContainsKey(Constants.HTML_OUTPUT_TEMPLATE_PATH_COMMAND_FULL_FLAG) &&
-                        !prototypes.ContainsKey(Constants.HTML_OUTPUT_TEMPLATE_PATH_COMMAND_SHORT_FLAG))
-                    {
-                        prototypes.Add(Constants.HTML_OUTPUT_TEMPLATE_PATH_COMMAND_FULL_FLAG, new HTMLOutputTemplatePathCommand());
-                    }
-                    command = (HTMLOutputTemplatePathCommand)prototypes[Constants.HTML_OUTPUT_TEMPLATE_PATH_COMMAND_FULL_FLAG].Clone();
+                    command = new HTMLOutputTemplatePathCommand();
 
                     break;
                 #endregion HTMLOutputTemplatePathCommand

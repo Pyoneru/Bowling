@@ -24,19 +24,6 @@ namespace BowlingConsole.Command
         }
 
         /// <summary>
-        /// Copy only properties. 
-        /// </summary>
-        /// <returns>Clone of instance</returns>
-        public object Clone()
-        {
-            ErrorCommand command = new ErrorCommand();
-            command.FullFlag = FullFlag;
-            command.ShortFlag = ShortFlag;
-            command.Description = Description;
-            return command;
-        }
-
-        /// <summary>
         /// Print message with red color
         /// </summary>
         public void Execute()

@@ -25,19 +25,6 @@ namespace BowlingConsole.Command
         }
 
         /// <summary>
-        /// Copy only properties. 
-        /// </summary>
-        /// <returns>Clone of instance</returns>
-        public object Clone()
-        {
-            PrintCommand command = new PrintCommand();
-            command.FullFlag = FullFlag;
-            command.ShortFlag = ShortFlag;
-            command.Description = Description;
-            return command;
-        }
-
-        /// <summary>
         /// Just print content
         /// </summary>
         public void Execute()

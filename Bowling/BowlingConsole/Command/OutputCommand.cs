@@ -24,19 +24,6 @@ namespace BowlingConsole.Command
         }
 
         /// <summary>
-        /// Copy only properties. 
-        /// </summary>
-        /// <returns>Clone of instance</returns>
-        public object Clone()
-        {
-            OutputCommand command = new OutputCommand();
-            command.FullFlag = FullFlag;
-            command.ShortFlag = ShortFlag;
-            command.Description = Description;
-            return command;
-        }
-
-        /// <summary>
         /// Check if filename is null or empty, then throw exception. Otherwise do nothing.
         /// </summary>
         public void Execute()

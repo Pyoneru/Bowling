@@ -27,19 +27,6 @@ namespace BowlingConsole.Command
         }
 
         /// <summary>
-        /// Copy only properties. 
-        /// </summary>
-        /// <returns>Clone of instance</returns>
-        public object Clone()
-        {
-            HelpCommand command = new HelpCommand();
-            command.FullFlag = FullFlag;
-            command.ShortFlag = ShortFlag;
-            command.Description = Description;
-            return command;
-        }
-
-        /// <summary>
         /// Print description for every available command or print error.
         /// </summary>
         public void Execute()
@@ -48,7 +35,7 @@ namespace BowlingConsole.Command
             {
                 foreach(var flag in flags)
                 {
-                    Console.WriteLine("You need give filename in arguments.\n");
+                    Console.WriteLine("You need provide filename as first argument.\n");
                     ICommand command = factory.CreateCommand(flag);
                     if(command != null)
                     {
@@ -79,7 +66,7 @@ namespace BowlingConsole.Command
                 if(data.Length > 1)
                 {
                     flags = new string[data.Length - 1];
-                    for (int i = 1; i < data.Length; i++)
+                    for (var i = 1; i < data.Length; i++)
                         flags[i - 1] = data[i].ToString();
                 }
                 else

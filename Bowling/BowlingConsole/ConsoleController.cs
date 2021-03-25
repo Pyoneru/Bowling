@@ -9,6 +9,8 @@ namespace BowlingConsole
 {
     public class ConsoleController : Controller
     {
+        protected ICommand command;
+
         public ConsoleController(CommandFactory factory, string[] args) : base(factory, args)
         {
         }
@@ -16,17 +18,18 @@ namespace BowlingConsole
         #region MainBranches
 
         /// <summary>
-        /// Check if any arg exists.
-        /// if yes, then execute HelpBranch or ParseBranch
+        /// Execute HelpBranch or ParseBranch if args are not empty. Otherwise exit program with fail message.
         /// </summary>
         public override void Run()
         {
             if(args.Length > 0)
             {
+                // First arg must be help to execute HelpBranch
                 if (args[0].Equals(Constants.HELP_COMMAND_FULL_FLAG) || args[0].Equals(Constants.HELP_COMMAND_SHORT_FLAG))
                 {
                     HelpBranch();
                 }
+                // Otherwise first arg must be filename to data.
                 else
                 {
                     ParseBranch();
@@ -40,11 +43,11 @@ namespace BowlingConsole
         }
 
         /// <summary>
-        /// Print descriptions for command
+        /// Print descriptions for commands
         /// </summary>
         protected void HelpBranch()
         {
-            ICommand command = factory.CreateCommand(Constants.HELP_COMMAND_FULL_FLAG);
+            command = factory.CreateCommand(Constants.HELP_COMMAND_FULL_FLAG);
 
             if (args.Length > 1)
             {
@@ -74,11 +77,11 @@ namespace BowlingConsole
 
                 if(args.Length > 1)
                 {
-                    FlagedCounterScoreBranch(ref scores);
+                    FlagedScoreCounterBranch(ref scores);
                 }
                 else
                 {
-                    SimpleCounterScoreBranch(ref scores);
+                    SimpleScoreCounterBranch(ref scores);
                 }
 
             }catch(Exception ex)
@@ -92,7 +95,7 @@ namespace BowlingConsole
         /// If args contains only filename, use default options.
         /// </summary>
         /// <param name="scores">Collection of BowlingScore</param>
-        protected void SimpleCounterScoreBranch(ref ICollection<BowlingScore> scores)
+        protected void SimpleScoreCounterBranch(ref ICollection<BowlingScore> scores)
         {
             IBowling bowling = new SimpleBowling();
             CountFinalScore(ref bowling, ref scores);
@@ -105,7 +108,7 @@ namespace BowlingConsole
         /// If args contains more then filename, then process all flags
         /// </summary>
         /// <param name="scores">Collection of BowlingScore</param>
-        protected void FlagedCounterScoreBranch(ref ICollection<BowlingScore> scores)
+        protected void FlagedScoreCounterBranch(ref ICollection<BowlingScore> scores)
         {
             IBowling bowling;
             TypeBowlingBranch(out bowling);
@@ -137,7 +140,7 @@ namespace BowlingConsole
             {
                 try
                 {
-                    ICommand command = factory.CreateCommand(Constants.BOWLING_TYPE_COMMAND_FULL_FLAG);
+                    command = factory.CreateCommand(Constants.BOWLING_TYPE_COMMAND_FULL_FLAG);
                     command.SetData(arg);
                     command.Execute();
 
@@ -166,7 +169,7 @@ namespace BowlingConsole
             {
                 try
                 {
-                    ICommand command = factory.CreateCommand(Constants.OUTPUT_TYPE_COMMAND_FULL_FLAG);
+                    command = factory.CreateCommand(Constants.OUTPUT_TYPE_COMMAND_FULL_FLAG);
                     command.SetData(arg);
                     command.Execute();
 
@@ -193,7 +196,7 @@ namespace BowlingConsole
             string arg;
             if((arg = ArgsContainsFlag(Constants.OUTPUT_GENERATE_FILE_COMMAND_FULL_FLAG, Constants.OUTPUT_GENERATE_FILE_COMMAND_SHORT_FLAG)) != null)
             {
-                ICommand command = factory.CreateCommand(Constants.OUTPUT_GENERATE_FILE_COMMAND_FULL_FLAG);
+                command = factory.CreateCommand(Constants.OUTPUT_GENERATE_FILE_COMMAND_FULL_FLAG);
                 command.SetData(output);
                 command.Execute();
             }
@@ -213,7 +216,7 @@ namespace BowlingConsole
             string arg;
             if ((arg = ArgsContainsFlag(Constants.PRINT_COMMAND_FULL_FLAG, Constants.PRINT_COMMAND_SHORT_FLAG)) != null)
             {
-                ICommand command = factory.CreateCommand(Constants.PRINT_COMMAND_FULL_FLAG);
+                command = factory.CreateCommand(Constants.PRINT_COMMAND_FULL_FLAG);
                 command.SetData(content);
                 command.Execute();
             }
@@ -231,7 +234,7 @@ namespace BowlingConsole
             {
                 try
                 {
-                    ICommand command = factory.CreateCommand(Constants.OUTPUT_COMMAND_FULL_FLAG);
+                    command = factory.CreateCommand(Constants.OUTPUT_COMMAND_FULL_FLAG);
                     command.SetData(arg);
                     command.Execute();
                     return ((OutputCommand)command).Filename;
@@ -255,7 +258,7 @@ namespace BowlingConsole
             {
                 try
                 {
-                    ICommand command = factory.CreateCommand(Constants.HTML_OUTPUT_TEMPLATE_PATH_COMMAND_FULL_FLAG);
+                    command = factory.CreateCommand(Constants.HTML_OUTPUT_TEMPLATE_PATH_COMMAND_FULL_FLAG);
                     command.SetData(output, arg);
                     command.Execute();
                 }catch(Exception ex)
@@ -269,13 +272,14 @@ namespace BowlingConsole
         #endregion FlagBranches
 
         #region Tasks
+
         /// <summary>
         /// Print Error message
         /// </summary>
         /// <param name="data">messages</param>
         protected void ExecuteErrorCommand(params object[] data)
         {
-            ICommand command = factory.CreateCommand(Constants.ERROR_COMMAND_FACTORY_FLAG);
+            command = factory.CreateCommand(Constants.ERROR_COMMAND_FACTORY_FLAG);
             command.SetData(data);
             command.Execute();
             
@@ -350,7 +354,6 @@ namespace BowlingConsole
             if (output is HTMLOutput) return "table.html";
             return "result.txt";
         }
-
 
         /// <summary>
         /// Find flags in args

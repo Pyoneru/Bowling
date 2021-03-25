@@ -7,7 +7,7 @@ using System.Text;
 namespace BowlingConsole.Command
 {
     /// <summary>
-    /// Set Conter score type(Bowling implementation)
+    /// Set score counter type(Bowling implementation)
     /// </summary>
     public class BowlingTypeCommand : ICommand
     {
@@ -28,20 +28,7 @@ namespace BowlingConsole.Command
         }
 
         /// <summary>
-        /// Copy only properties. 
-        /// </summary>
-        /// <returns>Clone of instance</returns>
-        public object Clone()
-        {
-            BowlingTypeCommand command = new BowlingTypeCommand();
-            command.FullFlag = FullFlag;
-            command.ShortFlag = ShortFlag;
-            command.Description = Description;
-            return command;
-        }
-
-        /// <summary>
-        /// Set bowling by type. If type not found, throw exception.
+        /// Set bowling by given type. If type not found, throw exception.
         /// </summary>
         public void Execute()
         {
@@ -64,7 +51,7 @@ namespace BowlingConsole.Command
         {
             if (data.Length > 0)
             {
-                string command = (string)data[0];
+                var command = (string)data[0];
                 type = command.Split("=")[1];
             }
             else

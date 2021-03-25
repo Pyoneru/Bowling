@@ -26,19 +26,6 @@ namespace BowlingConsole.Command
         }
 
         /// <summary>
-        /// Copy only properties. 
-        /// </summary>
-        /// <returns>Clone of instance</returns>
-        public object Clone()
-        {
-            HTMLOutputTemplatePathCommand command = new HTMLOutputTemplatePathCommand();
-            command.FullFlag = FullFlag;
-            command.ShortFlag = ShortFlag;
-            command.Description = Description;
-            return command;
-        }
-
-        /// <summary>
         /// Check if output or templatepath is null, if not then set TemplatePath
         /// </summary>
         public void Execute()

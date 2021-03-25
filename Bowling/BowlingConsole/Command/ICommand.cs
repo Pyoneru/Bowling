@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BowlingConsole.Command
 {
-    public interface ICommand: ICloneable
+    public interface ICommand
     {
 
         #region Properties
