@@ -351,6 +351,7 @@ namespace BowlingConsole
         /// <returns>Filename</returns>
         protected string GetDefaultFilename(ref IOutput output)
         {
+            if (output is PDFOutput) return "table.pdf";
             if (output is HTMLOutput) return "table.html";
             return "result.txt";
         }

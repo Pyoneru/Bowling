@@ -12,6 +12,7 @@ namespace BowlingConsole.Command
     public class OutputTypeCommand : ICommand
     {
         protected const string DEFAULT_TYPE = "html";
+        protected const string PDF_TYPE = "pdf";
 
         public string FullFlag { get; set; }
         public string ShortFlag { get; set; }
@@ -36,6 +37,9 @@ namespace BowlingConsole.Command
             {
                 case DEFAULT_TYPE:
                     Output = new HTMLOutput();
+                    break;
+                case PDF_TYPE:
+                    Output = new PDFOutput();
                     break;
             }
 

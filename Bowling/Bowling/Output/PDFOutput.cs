@@ -5,13 +5,16 @@ using System.Collections.Generic;
 using System.Text;
 using TheArtOfDev.HtmlRenderer.PdfSharp;
 
-namespace Bowling.Output
+namespace Bowling
 {
     /// <summary>
     /// PDFOutput using HTMLoutput to create pdf
     /// </summary>
     public class PDFOutput: HTMLOutput
     {
+
+        public PDFOutput() : base() { }
+
         /// <summary>
         /// First create html and next create pdf document
         /// </summary>
@@ -34,7 +37,7 @@ namespace Bowling.Output
         /// Save pdf to file
         /// </summary>
         /// <param name="filename"></param>
-        public new void SaveToFile(string filename)
+        public void SaveToFile(string filename)
         {
             if (Output != null && Output is PdfDocument)
             {
