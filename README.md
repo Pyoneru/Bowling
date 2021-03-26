@@ -50,6 +50,14 @@ output.CreateOutput(scores, filename);
 dynamic content = output.Output;
 Console.WriteLine(content);
 ```
+#### Do not generate output file during creating output
+```C#
+output.CreateFileOutput = false
+```
+#### Save output to file
+```C#
+output.SaveToFile(filename);
+```
 
 ## Bowling Console Application
 Console app using all implementations from library.
